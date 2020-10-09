@@ -7,7 +7,6 @@ import org.apache.hadoop.mapreduce.Reducer;
 import java.io.IOException;
 
 public class WordReducer extends Reducer<Text, IntWritable, Text, LongWritable> {
-    @Override
     protected void reduce(Text key, Iterable<IntWritable> values, MapOutputCollector.Context context) throws
             IOException, InterruptedException {
     }
