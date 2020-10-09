@@ -3,9 +3,8 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
-
 import javax.xml.soap.Text;
-
+import org.apache.hadoop.mapreduce.Mapper;
 
 public class WordCountApp {
     public static void main(String[] args) throws Exception {
