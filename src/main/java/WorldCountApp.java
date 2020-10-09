@@ -1,3 +1,12 @@
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+
+import javax.xml.soap.Text;
+
+
 public class WordCountApp {
     public static void main(String[] args) throws Exception {
         if (args.length != 2) {
