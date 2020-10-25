@@ -1,2 +1,5 @@
-public class AirportWritable {
+
+
+public class AirportWritable extends Writable {
+
 }
