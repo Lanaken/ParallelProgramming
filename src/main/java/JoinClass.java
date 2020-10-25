@@ -9,5 +9,6 @@ public class JoinClass {
             System.err.println("Usage: WordCountApp <input path> <output path>");
             System.exit(-1);
         }
+        JobConf conf = new JobConf()
     }
 }
