@@ -1,4 +1,5 @@
 
+import org.apache.hadoop.mapred.JobConf;
 import org.apache.log4j.BasicConfigurator;
 
 
@@ -9,6 +10,6 @@ public class JoinClass {
             System.err.println("Usage: WordCountApp <input path> <output path>");
             System.exit(-1);
         }
-        JobConf conf = new JobConf()
+        JobConf conf = new JobConf(JoinJob.clas);
     }
 }
