@@ -11,10 +11,12 @@ public class AirportWritable implements WritableComparable {
         return 0;
     }
 
+    @Override
     public void write(DataOutput dataOutput) throws IOException {
 
     }
 
+    @Override
     public void readFields(DataInput dataInput) throws IOException {
 
     }
