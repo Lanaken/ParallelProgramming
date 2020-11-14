@@ -7,27 +7,48 @@ import java.io.IOException;
 public class AirportWritable implements WritableComparable<AirportWritable> {
     private int Airport_ID;
     private int indicator;
-    Air
 
+    AirportWritable(){}
 
-
-    @Override
-    public int compareTo(Object o) {
-        return 0;
+    AirportWritable(int Airport_ID,int indicator){
+        this.Airport_ID = Airport_ID;
+        this.indicator = indicator;
     }
 
     @Override
     public void write(DataOutput dataOutput) throws IOException {
-
+        dataOutput.writeInt(Airport_ID);
+        dataOutput.writeInt(indicator);
     }
 
     @Override
     public void readFields(DataInput dataInput) throws IOException {
+        Airport_ID = dataInput.readInt();
+        indicator = dataInput.readInt();
+    }
 
+    public void setAirport_ID(int airport_ID) {
+        Airport_ID = airport_ID;
+    }
+
+    public void setIndicator(int indicator) {
+        this.indicator = indicator;
+    }
+
+    public int getAirport_ID() {
+        return Airport_ID;
+    }
+
+    public int getIndicator() {
+        return indicator;
     }
 
     @Override
     public int compareTo(AirportWritable o) {
-        return 0;
+        int a = this.Airport_ID - o.Airport_ID;
+        int b = this.indicator - o.indicator;
+        if (a == 1 || a == -1)
+            a += a;
+        return a + b;
     }
 }
