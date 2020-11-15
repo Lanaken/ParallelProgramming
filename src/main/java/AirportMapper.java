@@ -7,14 +7,17 @@ import org.apache.hadoop.mapreduce.Mapper;
 import java.io.IOException;
 
 public class AirportMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
-    private static final int AIRPORT_ID = 0;
-    private static final int DESCRIPTION = 1;
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         String line = value.toString();
-        String[] words = line.split(",")
-        for (String word : words){
-            context.write(new Text(word),new IntWritable(1));
+        String[] words = line.split(",[\"]");
+        if (key.get() > 0){
+            String id = words[0].replaceAll("\"","");
+            String description = words[1].replaceAll("\"","");
+            context.write(
+                    new AirportWritable(Integer.parseInt(id),0),
+                    new Text(description)
+            );
         }
     }
 }
