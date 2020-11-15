@@ -26,7 +26,7 @@ public class JoinClass {
         FileOutputFormat.setOutputPath(job, new Path(args[2]));
         job.setPartitionerClass(AirportPartitioner.class);
         job.setGroupingComparatorClass(AirportComparator.class);
-        job.setReducerClass(JoinRedu.class);
+        job.setReducerClass(AirportReducer.class);
         job.setMapOutputKeyClass(AirportWritable.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(Text.class);
