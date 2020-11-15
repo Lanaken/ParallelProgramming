@@ -1,11 +1,10 @@
-import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.WritableComparable;
 
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-public class AirportWritable extends Text implements WritableComparable<AirportWritable> {
+public class AirportWritable implements WritableComparable<AirportWritable> {
     private int Airport_ID;
     private int indicator;
 
