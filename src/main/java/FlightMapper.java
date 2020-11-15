@@ -14,8 +14,12 @@ public class FlightMapper extends Mapper<LongWritable, Text, Text, IntWritable> 
         String[] words = line.split(",");
         if (key.get() > 0){
             float arr_delay = 0;
-            if (words[14])
-            context.write(new AirportWritable(Integer.parseInt(id),0), new Text(description));
+            if (words[airport_delay_column].length() > 0)
+                arr_delay = Float.parseFloat(words[airport_delay_column]);
+            if (arr_delay > 0) {
+                int air_id = Integer.parseInt(words[airport_id_column]);
+                context.write(new AirportWritable(air_id, 1), new Text(String.valueOf(arr_delay)));
+            }
         }
     }
 }
