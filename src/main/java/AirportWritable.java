@@ -25,7 +25,6 @@ public class AirportWritable implements WritableComparable<AirportWritable> {
     public void readFields(DataInput dataInput) throws IOException {
         Airport_ID = dataInput.readInt();
         indicator = dataInput.readInt();
-        System.out.println(Airport_ID);
     }
 
     public void setAirport_ID(int airport_ID) {

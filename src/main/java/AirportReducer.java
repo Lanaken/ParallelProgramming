@@ -7,8 +7,8 @@ import org.apache.hadoop.mapreduce.Reducer;
 import java.io.IOException;
 import java.util.Iterator;
 
-public class AirportReducer extends Reducer<AirportWritable, IntWritable, Text, LongWritable> {
-    protected void reduce(AirportWritable key, Iterable<Text> values, Reducer.Context context) throws
+public class AirportReducer extends Reducer<AirportWritable, Text, Text, Text> {
+    protected void reduce(AirportWritable key, Iterable<Text> values, Context context) throws
             IOException, InterruptedException {
         long count = 0;
         float sum = 0;
@@ -25,7 +25,7 @@ public class AirportReducer extends Reducer<AirportWritable, IntWritable, Text, 
         }
         if (count > 0) {
             sum /= count;
-            context.write(new IntWritable(key.getAirport_ID()), new Text(new String(name  + " , " + " , " + min + " , " +  max + " , " + sum)));
+            context.write(name, new Text( min + " , " + max + " , " + sum + " \n"));
         }
     }
 }
