@@ -6,6 +6,7 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.MultipleInputs;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.log4j.BasicConfigurator;
 
 
 import java.io.IOException;
@@ -13,7 +14,7 @@ import java.io.IOException;
 
 public class JoinClass {
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
-      //  BasicConfigurator.configure();
+        BasicConfigurator.configure();
         if (args.length != 3) {
             System.err.println("Usage: WordCountApp <input path> <input path> <output path>");
             System.exit(-1);
