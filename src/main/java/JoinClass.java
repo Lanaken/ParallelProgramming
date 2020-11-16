@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class JoinClass {
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
-    //    BasicConfigurator.configure();
+        BasicConfigurator.configure();
         if (args.length != 3) {
             System.err.println("Usage: WordCountApp <input path> <input path> <output path>");
             System.exit(-1);
