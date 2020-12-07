@@ -8,7 +8,7 @@ public class Main {
         JavaSparkContext sc = new JavaSparkContext(conf);
         JavaRDD<String> flights = sc.textFile(args[0]);
         JavaRDD<String> airports = sc.textFile(args[1]);
-        
+
     }
 
 }
