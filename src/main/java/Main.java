@@ -19,6 +19,10 @@ public class Main {
         flights = flights.filter(a -> !a.equals(finalFlights.first()));
         airports = airports.filter(a -> !a.equals(finalAirports.first()));
     }
+    private static float calculateDelay(String[] column){
+        Float delay = Float.parseFloat(column[18])
+        return delay > 0 ? delay
+    }
     public static void main(String[] args) {
         SparkConf conf = new SparkConf().setAppName("lab3");
         JavaSparkContext sc = new JavaSparkContext(conf);
@@ -33,8 +37,12 @@ public class Main {
         final Broadcast<Map<String,String>> broadcast = sc.broadcast(airport.collectAsMap());
         JavaPairRDD<Tuple2<String,String>, Flight> flightJavaPairRDD = flights
                 .mapToPair(line -> {
-
-                })
+                    String[] columns = line.split(",");
+                    boolean isCancelled = columns[]
+                            String departure = columns[11];
+                    String destination = columns[14];
+                    Float delay = Float.parseFloat(columns[18]);
+                });
     }
 
 }
