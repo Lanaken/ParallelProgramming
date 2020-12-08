@@ -41,7 +41,7 @@ public class Main {
                 });
     }
     public static void main(String[] args) {
-        SparkConf conf = new SparkConf().setAppName("lab3");
+        SparkConf conf = new SparkConf().setAppName("lab3").setMaster("local[2]");
         JavaSparkContext sc = new JavaSparkContext(conf);
         downloadData(sc,args);
         makePairRDD();
