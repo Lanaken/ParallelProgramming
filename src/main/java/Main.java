@@ -22,7 +22,7 @@ public class Main {
         flights = flights.filter(a -> !a.equals(finalFlights.first()));
         airports = airports.filter(a -> !a.equals(finalAirports.first()));
     }
-    private static double makePairRDD(){
+    private static void makePairRDD(){
         airport = airports.mapToPair(
                 line -> {
                     String[] columns = line.split(",");
@@ -64,8 +64,15 @@ public class Main {
                         }
                         count++;
                     }
-                    String result =  "countOfCancelled = " + countOfCancelled/count + "countOfDelayed" + countOfDelayed/count
-                })
+                    String result =  "countOfCancelled = " + countOfCancelled/count + "countOfDelayed" + countOfDelayed/count +
+                            "maxTimeOfDelay = " + maxTimeOfDelay;
+                    return result;
+                }).map( fl -> {
+                    String destName = airpotsBroadcast.value().get(fl._1._2);
+                    String depName = airpotsBroadcast.value().get(fl._1._1);
+                    String result = "departureName = " + depName + "destName = " + destName + "flight info :" + fl._2;
+                    return result;
+                }).saveAsTextFile(args[2]);
     }
 
 }
