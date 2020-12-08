@@ -24,7 +24,11 @@ public class Main {
                 String description = columns[1].replace("\"","");
                 return new Tuple2<>(code,description);
                 });
-        final Broadcast<Map<String,String>>
+        final Broadcast<Map<String,String>> broadcast = sc.broadcast(airport.collectAsMap());
+        JavaPairRDD<Tuple2<String,String>, Flight> flightJavaPairRDD = flights
+                .mapToPair(line -> {
+
+                })
     }
 
 }
