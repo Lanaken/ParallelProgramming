@@ -27,4 +27,13 @@ public class Flight implements Serializable {
     public String getAirportOfDeparture() {
         return airportOfDeparture;
     }
+
+    @Override
+    public String toString(){
+        return "Flight{" +
+                "airportOfDeparture = " + airportOfDeparture +
+                "airportOfArrival = " + airportOfArrival +
+                "isCancelled = " + isCancelled +
+                "timeOfDelay = " + timeOfDelay + "}";
+    }
 }
