@@ -60,11 +60,11 @@ public class Main {
                         if (flight.getTimeOfDelay() > 0){
                             countOfDelayed++;
                             if (maxTimeOfDelay < flight.getTimeOfDelay())
-                                maxDelay = flight.getTimeOfDelay();
+                                maxTimeOfDelay = flight.getTimeOfDelay();
                         }
                         count++;
                     }
-                    String str =  ""
+                    String result =  "countOfCancelled = " + countOfCancelled/count + "countOfDelayed" + countOfDelayed/count
                 })
     }
 
