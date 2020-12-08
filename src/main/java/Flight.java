@@ -3,20 +3,20 @@ import scala.Serializable;
 public class Flight implements Serializable {
     private String airportOfDeparture;
     private String airportOfArrival;
-    private boolean isCancelled;
-    private int timeOfDelay;
-    Flight(String airportOfArrival,String airportOfDeparture, boolean isCancelled, int timeOfDelay){
+    private boolean cancelled;
+    private Float timeOfDelay;
+    Flight(String airportOfArrival,String airportOfDeparture, boolean cancelled, Float timeOfDelay){
         this.airportOfArrival = airportOfArrival;
         this.airportOfDeparture = airportOfDeparture;
-        this.isCancelled = isCancelled;
+        this.cancelled = cancelled;
         this.timeOfDelay = timeOfDelay;
     }
 
     public boolean isCancelled() {
-        return isCancelled;
+        return cancelled;
     }
 
-    public int getTimeOfDelay() {
+    public Float getTimeOfDelay() {
         return timeOfDelay;
     }
 
@@ -33,7 +33,7 @@ public class Flight implements Serializable {
         return "Flight{" +
                 "airportOfDeparture = " + airportOfDeparture +
                 "airportOfArrival = " + airportOfArrival +
-                "isCancelled = " + isCancelled +
+                "isCancelled = " + cancelled +
                 "timeOfDelay = " + timeOfDelay + "}";
     }
 }
