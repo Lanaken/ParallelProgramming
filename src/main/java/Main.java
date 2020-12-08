@@ -49,7 +49,22 @@ public class Main {
         JavaRDD<String> finalAirports = airports;
         flights = flights.filter(a -> !a.equals(finalFlights.first()));
         airports = airports.filter(a -> !a.equals(finalAirports.first()));
-        makePairRDD();
+        airport = airports.mapToPair(
+                line -> {
+                    String[] columns = line.split(",");
+                    String code = columns[0].replace("\"","");
+                    String description = columns[1].replace("\"","");
+                    return new Tuple2<>(code,description);
+                });
+        flight = flights
+                .mapToPair(line -> {
+                    String[] columns = line.split(",");
+                    boolean cancelled = columns[19].isEmpty();
+                    String departure = columns[11];
+                    String destination = columns[14];
+                    float timeOfDelay = Float.parseFloat(columns[18]);
+                    return new Tuple2<>(new Tuple2<>(departure,destination),new Flight(destination,departure,cancelled,timeOfDelay));
+                });
         final Broadcast<Map<String,String>> airpotsBroadcast = sc.broadcast(airport.collectAsMap());
         flight.groupByKey().mapValues(
                 flights -> {
