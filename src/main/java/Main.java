@@ -43,12 +43,7 @@ public class Main {
     public static void main(String[] args) {
         SparkConf conf = new SparkConf().setAppName("lab3").setMaster("local[2]");
         JavaSparkContext sc = new JavaSparkContext(conf);
-        flights = sc.textFile(args[0]);
-        airports = sc.textFile(args[1]);
-        JavaRDD<String> finalFlights = flights;
-        JavaRDD<String> finalAirports = airports;
-        flights = flights.filter(a -> !a.equals(finalFlights.first()));
-        airports = airports.filter(a -> !a.equals(finalAirports.first()));
+        downloadData(sc,args);
         makePairRDD();
         final Broadcast<Map<String,String>> airpotsBroadcast = sc.broadcast(airport.collectAsMap());
         flight.groupByKey().mapValues(
