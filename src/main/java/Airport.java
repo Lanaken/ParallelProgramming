@@ -1,2 +1,5 @@
-public class Airport {
+
+import scala.Serializable;
+
+public class Airport implements Serializable {
 }
