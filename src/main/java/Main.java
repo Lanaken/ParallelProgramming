@@ -8,15 +8,21 @@ import scala.Tuple2;
 import java.util.Map;
 
 public class Main {
-    public static void main(String[] args) {
-        SparkConf conf = new SparkConf().setAppName("lab3");
-        JavaSparkContext sc = new JavaSparkContext(conf);
-        JavaRDD<String> flights = sc.textFile(args[0]);
-        JavaRDD<String> airports = sc.textFile(args[1]);
+    private static JavaRDD<String> flights;
+    private static JavaRDD<String> airports;
+
+    private static void downloadData(JavaSparkContext sc,String[] args){
+        flights = sc.textFile(args[0]);
+        airports = sc.textFile(args[1]);
         JavaRDD<String> finalFlights = flights;
         JavaRDD<String> finalAirports = airports;
         flights = flights.filter(a -> !a.equals(finalFlights.first()));
         airports = airports.filter(a -> !a.equals(finalAirports.first()));
+    }
+    public static void main(String[] args) {
+        SparkConf conf = new SparkConf().setAppName("lab3");
+        JavaSparkContext sc = new JavaSparkContext(conf);
+        downloadData(sc,args);
         JavaPairRDD<String,String> airport = airports.mapToPair(
                 line -> {
                 String[] columns = line.split(",");
