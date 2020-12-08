@@ -5,6 +5,7 @@ import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.broadcast.Broadcast;
 import scala.Tuple2;
 
+import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -13,10 +14,6 @@ public class Main {
     private static JavaRDD<String> airports;
     private static JavaPairRDD<String,String> airport;
     private static JavaPairRDD<Tuple2<String,String>, Flight> flight;
-    private static AtomicInteger countOfLate = new AtomicInteger();
-    private static AtomicInteger countOfCancelled = new AtomicInteger();
-    private static float maxTimeOfDelay = 0;
-
     private static void downloadData(JavaSparkContext sc,String[] args){
         flights = sc.textFile(args[0]);
         airports = sc.textFile(args[1]);
@@ -37,16 +34,9 @@ public class Main {
                 .mapToPair(line -> {
                     String[] columns = line.split(",");
                     boolean cancelled = columns[19].isEmpty();
-                    if (cancelled)
-                        countOfCancelled.getAndIncrement();
                     String departure = columns[11];
                     String destination = columns[14];
                     float timeOfDelay = Float.parseFloat(columns[18]);
-                    if (timeOfDelay > 0) {
-                        countOfLate.getAndIncrement();
-                        if (timeOfDelay > maxTimeOfDelay)
-                            maxTimeOfDelay = timeOfDelay;
-                    }
                     return new Tuple2<>(new Tuple2<>(departure,destination),new Flight(destination,departure,cancelled,timeOfDelay));
                 });
     }
@@ -57,10 +47,25 @@ public class Main {
         makePairRDD();
         final Broadcast<Map<String,String>> airpotsBroadcast = sc.broadcast(airport.collectAsMap());
         flight.groupByKey().mapValues(
-                pair -> {
-
-                }
-        )
+                flights -> {
+                    Iterator<Flight> iterator = flights.iterator();
+                    int countOfCancelled = 0;
+                    int countOfDelayed = 0;
+                    int count = 0;
+                    float maxTimeOfDelay = 0;
+                    for (Iterator<Flight> flightIterator = iterator;iterator.hasNext();){
+                        Flight flight = flightIterator.next();
+                        if (flight.isCancelled())
+                            countOfCancelled++;
+                        if (flight.getTimeOfDelay() > 0){
+                            countOfDelayed++;
+                            if (maxTimeOfDelay < flight.getTimeOfDelay())
+                                maxDelay = flight.getTimeOfDelay();
+                        }
+                        count++;
+                    }
+                    String str =  ""
+                })
     }
 
 }

@@ -28,6 +28,8 @@ public class Flight implements Serializable {
         return airportOfDeparture;
     }
 
+
+
     @Override
     public String toString(){
         return "Flight{" +
