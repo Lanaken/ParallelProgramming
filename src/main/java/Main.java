@@ -44,7 +44,7 @@ public class Main {
         flight = flights
                 .mapToPair(line -> {
                     String[] columns = line.split(",");
-                    boolean cancelled = !columns[19].isEmpty();
+                    boolean cancelled = Float.parseFloat(columns[19]) != 0;
                     String departure = columns[11];
                     System.out.println(columns[19]);
                     String destination = columns[14];
