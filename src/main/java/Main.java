@@ -8,7 +8,6 @@ import scala.Tuple2;
 import java.io.File;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
     private static JavaRDD<String> flights;
