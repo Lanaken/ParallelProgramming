@@ -78,7 +78,8 @@ public class Main {
                         }
                         count++;
                     }
-                    String result =  "countOfCancelled = " + countOfCancelled/count + " countOfDelayed =" + countOfDelayed/count +
+                    System.out.println(countOfCancelled);
+                    String result =  "countOfCancelled = " + (float)countOfCancelled/(float)count + " countOfDelayed =" + (float)countOfDelayed/(float)count +
                             " maxTimeOfDelay = " + maxTimeOfDelay;
                     return result;
                 }).map( fl -> {
