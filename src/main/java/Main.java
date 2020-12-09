@@ -5,6 +5,7 @@ import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.broadcast.Broadcast;
 import scala.Tuple2;
 
+import java.io.File;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -15,6 +16,7 @@ public class Main {
     private static JavaPairRDD<String,String> airport;
     private static JavaPairRDD<Tuple2<String,String>, Flight> flight;
     private static void downloadData(JavaSparkContext sc,String[] args){
+        boolean file = new File("output").delete();
         flights = sc.textFile(args[0]);
         airports = sc.textFile(args[1]);
         String finalFlights = flights.first();
@@ -35,6 +37,7 @@ public class Main {
                     String[] columns = line.split(",");
                     boolean cancelled = columns[19].isEmpty();
                     String departure = columns[11];
+                    System.out.println(columns[0]);
                     String destination = columns[14];
                     float timeOfDelay = Float.parseFloat(columns[18]);
                     return new Tuple2<>(new Tuple2<>(departure,destination),new Flight(destination,departure,cancelled,timeOfDelay));
