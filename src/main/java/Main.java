@@ -69,7 +69,7 @@ public class Main {
                     float maxTimeOfDelay = 0;
                     for (Iterator<Flight> flightIterator = iterator;iterator.hasNext();){
                         Flight flight = flightIterator.next();
-                        if (!flight.isCancelled())
+                        if (flight.isCancelled())
                             countOfCancelled++;
                         if (flight.getTimeOfDelay() > 0){
                             countOfDelayed++;
