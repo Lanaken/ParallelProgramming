@@ -46,7 +46,7 @@ public class Main {
                     String[] columns = line.split(",");
                     boolean cancelled = columns[19].isEmpty();
                     String departure = columns[11];
-                    //System.out.println(columns[18].isEmpty());
+                    System.out.println(columns[19].isEmpty());
                     String destination = columns[14];
                     float timeOfDelay = columns[18].isEmpty() ? 0 : Float.parseFloat(columns[18]);
                     return new Tuple2<>(new Tuple2<>(departure,destination),new Flight(destination,departure,cancelled,timeOfDelay));
@@ -78,7 +78,7 @@ public class Main {
                         }
                         count++;
                     }
-                   // System.out.println(countOfCancelled);
+                    //System.out.println(countOfCancelled);
                     String result =  "countOfCancelled = " + (float)countOfCancelled/(float)count + " countOfDelayed =" + (float)countOfDelayed/(float)count +
                             " maxTimeOfDelay = " + maxTimeOfDelay;
                     return result;
