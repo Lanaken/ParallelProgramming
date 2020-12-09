@@ -39,8 +39,8 @@ public class Main {
                     String departure = columns[11];
                     System.out.println(columns[18].isEmpty());
                     String destination = columns[14];
-                    double timeOfDelay = columns[18].isEmpty() ? 0 : Double.parseDouble(columns[18]);
-                    return new Tuple2<>(new Tuple2<>(departure,destination),new Flight(destination,departure,cancelled,(float) timeOfDelay));
+                    float timeOfDelay = columns[18].isEmpty() ? 0 : Float.parseFloat(columns[18]);
+                    return new Tuple2<>(new Tuple2<>(departure,destination),new Flight(destination,departure,cancelled,timeOfDelay));
                 });
     }
     public static void main(String[] args) {
@@ -67,13 +67,13 @@ public class Main {
                         }
                         count++;
                     }
-                    String result =  "countOfCancelled = " + countOfCancelled/count + "countOfDelayed" + countOfDelayed/count +
-                            "maxTimeOfDelay = " + maxTimeOfDelay;
+                    String result =  "countOfCancelled = " + countOfCancelled/count + " countOfDelayed =" + countOfDelayed/count +
+                            " maxTimeOfDelay = " + maxTimeOfDelay;
                     return result;
                 }).map( fl -> {
                     String destName = airpotsBroadcast.value().get(fl._1._2);
                     String depName = airpotsBroadcast.value().get(fl._1._1);
-                    String result = "departureName = " + depName + "destName = " + destName + "flight info :" + fl._2;
+                    String result = "departureName = " + depName + " destName = " + destName + " flight info :" + fl._2;
                     return result;
                 }).saveAsTextFile(args[2]);
     }
