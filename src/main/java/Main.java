@@ -17,10 +17,10 @@ public class Main {
     private static void downloadData(JavaSparkContext sc,String[] args){
         flights = sc.textFile(args[0]);
         airports = sc.textFile(args[1]);
-        JavaRDD<String> finalFlights = flights;
-        JavaRDD<String> finalAirports = airports;
-        flights = flights.filter(a -> !a.equals(finalFlights.first()));
-        airports = airports.filter(a -> !a.equals(finalAirports.first()));
+        String finalFlights = flights.first();
+        String finalAirports = airports.first();
+        flights = flights.filter(a -> !a.equals(finalFlights));
+        airports = airports.filter(a -> !a.equals(finalAirports));
     }
     private static void makePairRDD(){
         airport = airports.mapToPair(
