@@ -37,7 +37,7 @@ public class Main {
                     String[] columns = line.split(",");
                     boolean cancelled = columns[19].isEmpty();
                     String departure = columns[11];
-                    System.out.println(columns[11]);
+                    System.out.println(columns[18]);
                     String destination = columns[14];
                     float timeOfDelay = Float.parseFloat(columns[18]);
                     return new Tuple2<>(new Tuple2<>(departure,destination),new Flight(destination,departure,cancelled,timeOfDelay));
