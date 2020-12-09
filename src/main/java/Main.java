@@ -15,8 +15,17 @@ public class Main {
     private static JavaRDD<String> airports;
     private static JavaPairRDD<String,String> airport;
     private static JavaPairRDD<Tuple2<String,String>, Flight> flight;
+
+    private static boolean deleteOutput(File output){
+        File[] includedFiles = output.listFiles();
+        if (includedFiles != null){
+            for (File file : includedFiles){
+                deleteOutput(file);
+            }
+        }
+        return output.delete();
+    }
     private static void downloadData(JavaSparkContext sc,String[] args){
-        boolean file = new File("output").delete();
         flights = sc.textFile(args[0]);
         airports = sc.textFile(args[1]);
         String finalFlights = flights.first();
@@ -46,6 +55,8 @@ public class Main {
     public static void main(String[] args) {
         SparkConf conf = new SparkConf().setAppName("lab3").setMaster("local[2]");
         JavaSparkContext sc = new JavaSparkContext(conf);
+        File output = new File("output");
+        deleteOutput(output);
         downloadData(sc,args);
         makePairRDD();
         final Broadcast<Map<String,String>> airpotsBroadcast = sc.broadcast(airport.collectAsMap());
