@@ -78,7 +78,7 @@ public class Main {
                         }
                         count++;
                     }
-                    System.out.println(countOfCancelled + " " + count);
+                  //  System.out.println(countOfCancelled + " " + count);
                     String result =  "percentOfCancelled = " + (float)countOfCancelled/(float)count*100 + "  percentOfDelayed = " +
                             (float)countOfDelayed/(float)count*100 + " maxTimeOfDelay = " + maxTimeOfDelay;
                     return result;
