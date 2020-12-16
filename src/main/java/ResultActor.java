@@ -4,7 +4,7 @@ import akka.actor.ActorRef;
 public class ResultActor extends AbstractActor {
     private ActorRef storage;
 
-    ResultActor()
+    ResultActor(ActorRef )
     @Override
     public Receive createReceive() {
         return null;
