@@ -1,7 +1,4 @@
-import akka.actor.AbstractActor;
-import akka.actor.ActorRef;
-import akka.actor.ActorSystem;
-import akka.actor.SupervisorStrategy;
+import akka.actor.*;
 import scala.sys.Prop;
 
 public class Router extends AbstractActor {
