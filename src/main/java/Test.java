@@ -3,14 +3,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
-public class Data implements Serializable {
+public class Test implements Serializable {
     private String testName;
     private String expectedResult;
     private Object[] params;
     private String result;
 
     @JsonCreator
-    Data(@JsonProperty("testName")String testName,@JsonProperty("expectedResult")String expectedResult, @JsonProperty("params")Object[] params){
+    Test(@JsonProperty("testName")String testName, @JsonProperty("expectedResult")String expectedResult, @JsonProperty("params")Object[] params){
         this.testName = testName;
         this.expectedResult = expectedResult;
         this.params = params;
