@@ -13,7 +13,7 @@ public class ResultActor extends AbstractActor {
         this.storage = storage;
     }
 
-    private String runTest(Test test) throws ScriptException {
+    private String runTest(Test test) throws ScriptException, NoSuchMethodException {
         ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
         engine.eval(test.getParent().getJsScript());
         Invocable invocable = (Invocable) engine;
