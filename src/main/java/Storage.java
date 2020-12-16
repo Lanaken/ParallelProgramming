@@ -6,9 +6,10 @@ import java.util.Map;
 
 public class Storage extends AbstractActor {
     private Map<String, ArrayList<Test>> store = new HashMap<>();
+
     private void input(Test test){
         String packageId = test.getParent().getPackageId();
-        
+        if ()
     }
     @Override
     public Receive createReceive() {
