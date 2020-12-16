@@ -7,7 +7,7 @@ public class Router extends AbstractActor {
     private ActorRef testActor;
     private SupervisorStrategy supervisorStrategy;
 
-    Router
+    Router()
 
 
     @Override
