@@ -13,7 +13,7 @@ public class ResultActor extends AbstractActor {
 
     private String runTest(Test test){
         ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
-        engine.eval()
+        engine.eval(test.getParent().getJsScript(),)
     }
 
     @Override
