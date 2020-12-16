@@ -1,4 +1,5 @@
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
@@ -8,7 +9,9 @@ public class Data implements Serializable {
     private Object[] params;
 
     @JsonCreator
-    Data(String testName,String expectedResult,Object[] params){
-        
+    Data(@JsonProperty("testName")String testName,@JsonProperty("expectedResult")String expectedResult, @JsonProperty("params")Object[] params){
+        this.testName = testName;
+        this.expectedResult = expectedResult;
+        this.params = params;
     }
 }
