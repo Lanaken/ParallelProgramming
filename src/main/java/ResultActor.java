@@ -21,7 +21,7 @@ public class ResultActor extends AbstractActor {
     }
 
     private Test check(Test test){
-        String 
+        String res = run(test);
     }
 
     @Override
