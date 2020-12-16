@@ -13,6 +13,11 @@ public class Request implements Serializable {
     @JsonCreator
     Request(@JsonProperty("packageId")String packageId,@JsonProperty("jsScript")String jsScript,
             @JsonProperty("functionName") String functionName,@JsonProperty("tests")ArrayList<Test> tests){
-        
+        this.functionName = functionName;
+        this.jsScript = jsScript;
+        this.packageId = packageId;
+        this.tests = tests;
     }
+
+    pub
 }
