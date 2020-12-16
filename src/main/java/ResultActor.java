@@ -12,7 +12,7 @@ public class ResultActor extends AbstractActor {
     }
 
     private String runTest(){
-        ScriptEngine engine = new ScriptEngineManager()
+        ScriptEngine engine = new ScriptEngineManager().getEngineByName()
     }
 
     @Override
