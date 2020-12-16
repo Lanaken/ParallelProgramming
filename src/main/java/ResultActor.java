@@ -17,7 +17,7 @@ public class ResultActor extends AbstractActor {
         ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
         engine.eval(test.getParent().getJsScript());
         Invocable invocable = (Invocable) engine;
-        return invocable.invokeFunction(test.getParent().getFunctionName(),
+        return invocable.invokeFunction(test.getParent().getFunctionName(),test.getParams()).toString();
     }
 
     @Override
