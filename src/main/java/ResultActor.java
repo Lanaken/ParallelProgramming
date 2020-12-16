@@ -12,7 +12,8 @@ public class ResultActor extends AbstractActor {
     }
 
     private String runTest(){
-        ScriptEngine engine = new ScriptEngineManager().getEngineByName("nash")
+        ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
+        
     }
 
     @Override
