@@ -1,5 +1,6 @@
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
+import akka.actor.ActorSystem;
 import akka.actor.SupervisorStrategy;
 
 public class Router extends AbstractActor {
@@ -7,7 +8,9 @@ public class Router extends AbstractActor {
     private ActorRef testActor;
     private SupervisorStrategy supervisorStrategy;
 
-    Router()
+    Router(ActorSystem actorSystem){
+        
+    }
 
 
     @Override
