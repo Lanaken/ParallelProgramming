@@ -6,8 +6,9 @@ import java.util.Map;
 
 public class Storage extends AbstractActor {
     private Map<String, ArrayList<Test>> store = new HashMap<>();
-    private void input(Request request){
-        String packageId = request.g
+    private void input(Test test){
+        String packageId = test.getParent().getPackageId();
+        
     }
     @Override
     public Receive createReceive() {
