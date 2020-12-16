@@ -11,7 +11,7 @@ public class ResultActor extends AbstractActor {
         this.storage = storage;
     }
 
-    private String runTest(){
+    private String runTest(Test test){
         ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
         engine.eval()
     }
