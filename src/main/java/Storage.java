@@ -1,4 +1,5 @@
 import akka.actor.AbstractActor;
+import com.sun.org.apache.xml.internal.security.utils.SignatureElementProxy;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +20,6 @@ public class Storage extends AbstractActor {
     }
     @Override
     public Receive createReceive() {
-        return receiveBuilder().match(Test.class, test -> input(test)).match()
+        return receiveBuilder().match(Test.class, test -> input(test)).match(String.class)
     }
 }
