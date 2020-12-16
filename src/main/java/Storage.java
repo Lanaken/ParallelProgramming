@@ -19,6 +19,6 @@ public class Storage extends AbstractActor {
     }
     @Override
     public Receive createReceive() {
-        return receiveBuilder().match(Test.class,)
+        return receiveBuilder().match(Test.class, test -> input())
     }
 }
