@@ -2,6 +2,7 @@ import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.SupervisorStrategy;
+import scala.sys.Prop;
 
 public class Router extends AbstractActor {
     private ActorRef storageActor;
@@ -9,7 +10,7 @@ public class Router extends AbstractActor {
     private SupervisorStrategy supervisorStrategy;
 
     Router(ActorSystem actorSystem){
-        storageActor = actorSystem.actorOf()
+        storageActor = actorSystem.actorOf(Prop.Creator)
     }
 
 
