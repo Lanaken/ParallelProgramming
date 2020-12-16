@@ -4,10 +4,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 
 public class Test implements Serializable {
-    private String testName;
-    private String expectedResult;
-    private Object[] params;
+    private final String testName;
+    private final String expectedResult;
+    private final Object[] params;
     private String result;
+    private Request master;
 
     @JsonCreator
     Test(@JsonProperty("testName")String testName, @JsonProperty("expectedResult")String expectedResult, @JsonProperty("params")Object[] params){
@@ -34,5 +35,13 @@ public class Test implements Serializable {
 
     public String getTestName() {
         return testName;
+    }
+
+    public Request getMaster() {
+        return master;
+    }
+
+    public void setMaster(Request master) {
+        this.master = master;
     }
 }
