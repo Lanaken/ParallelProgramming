@@ -6,6 +6,7 @@ import java.util.Map;
 
 public class Storage extends AbstractActor {
     private Map<String, ArrayList<Test>> store = new HashMap<>();
+    private 
     @Override
     public Receive createReceive() {
         return null;
