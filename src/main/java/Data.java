@@ -1,5 +1,7 @@
 import java.io.Serializable;
 
 public class Data implements Serializable {
-    private String test
+    private String testName;
+    private String expectedResult;
+    private 
 }
