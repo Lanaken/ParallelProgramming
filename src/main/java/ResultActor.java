@@ -20,7 +20,7 @@ public class ResultActor extends AbstractActor {
         return invocable.invokeFunction(test.getParent().getFunctionName(),test.getParams()).toString();
     }
 
-    private Test
+    private Test check()
 
     @Override
     public Receive createReceive() {
