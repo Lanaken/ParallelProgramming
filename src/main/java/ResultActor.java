@@ -16,7 +16,8 @@ public class ResultActor extends AbstractActor {
     private String runTest(Test test) throws ScriptException {
         ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
         engine.eval(test.getParent().getJsScript());
-        Invocable invocable
+        Invocable invocable = (Invocable) engine;
+        
     }
 
     @Override
