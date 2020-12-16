@@ -29,6 +29,6 @@ public class ResultActor extends AbstractActor {
 
     @Override
     public Receive createReceive() {
-        return ReceiveBuilder.create().match(Test.class,)
+        return ReceiveBuilder.create().match(Test.class, func -> )
     }
 }
