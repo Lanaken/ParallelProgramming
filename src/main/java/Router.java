@@ -10,7 +10,7 @@ public class Router extends AbstractActor {
     private SupervisorStrategy supervisorStrategy;
 
     Router(ActorSystem actorSystem){
-        storageActor = actorSystem.actorOf(Prop.Creator)
+        storageActor = actorSystem.actorOf(Prop.Creator())
     }
 
 
