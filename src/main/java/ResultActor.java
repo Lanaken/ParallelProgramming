@@ -8,7 +8,7 @@ public class ResultActor extends AbstractActor {
         this.storage = storage;
     }
 
-    private String run
+    private String runTest()
 
     @Override
     public Receive createReceive() {
