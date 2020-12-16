@@ -8,7 +8,7 @@ public class Test implements Serializable {
     private final String expectedResult;
     private final Object[] params;
     private String result;
-    private Request master;
+    private Request parent;
 
     @JsonCreator
     Test(@JsonProperty("testName")String testName, @JsonProperty("expectedResult")String expectedResult, @JsonProperty("params")Object[] params){
@@ -37,11 +37,11 @@ public class Test implements Serializable {
         return testName;
     }
 
-    public Request getMaster() {
-        return master;
+    public Request getParent() {
+        return parent;
     }
 
-    public void setMaster(Request master) {
-        this.master = master;
+    public void setMaster(Request parent) {
+        this.parent = parent;
     }
 }
