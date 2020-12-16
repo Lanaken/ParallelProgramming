@@ -10,7 +10,7 @@ public class Storage extends AbstractActor {
     private void input(Test test){
         String packageId = test.getParent().getPackageId();
         if (store.containsKey(packageId))
-            store.get()
+            store.get(packageId).add(test);
     }
     @Override
     public Receive createReceive() {
