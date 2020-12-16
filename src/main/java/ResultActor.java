@@ -1,7 +1,8 @@
 import akka.actor.AbstractActor;
+import akka.actor.ActorRef;
 
 public class ResultActor extends AbstractActor {
-    private 
+    private ActorRef
     @Override
     public Receive createReceive() {
         return null;
