@@ -7,6 +7,7 @@ public class Data implements Serializable {
     private String testName;
     private String expectedResult;
     private Object[] params;
+    private String result;
 
     @JsonCreator
     Data(@JsonProperty("testName")String testName,@JsonProperty("expectedResult")String expectedResult, @JsonProperty("params")Object[] params){
@@ -14,4 +15,10 @@ public class Data implements Serializable {
         this.expectedResult = expectedResult;
         this.params = params;
     }
+
+    public void setResult(String result){
+        this.result = result;
+    }
+
+    public v
 }
