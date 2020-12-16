@@ -20,7 +20,7 @@ public class ResultActor extends AbstractActor {
         return invocable.invokeFunction(test.getParent().getFunctionName(),test.getParams()).toString();
     }
 
-    private Test check(Test test){
+    private Test check(Test test) throws ScriptException, NoSuchMethodException {
         String res = run(test);
     }
 
