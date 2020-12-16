@@ -11,7 +11,8 @@ public class Request implements Serializable {
     private ArrayList<Test> tests;
 
     @JsonCreator
-    Request(@JsonProperty("packageId")String packageId,@JsonProperty("jsScript")String jsScript,@JsonProperty("functionName") String functionName){
+    Request(@JsonProperty("packageId")String packageId,@JsonProperty("jsScript")String jsScript,
+            @JsonProperty("functionName") String functionName,@JsonProperty("tests")ArrayList<Test> tests){
 
     }
 }
