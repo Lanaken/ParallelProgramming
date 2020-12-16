@@ -14,7 +14,7 @@ public class Storage extends AbstractActor {
         else{
             ArrayList<Test> tests = new ArrayList<>();
             tests.add(test);
-            store.put(packageId,tests)
+            store.put(packageId,tests);
         }
     }
     @Override
