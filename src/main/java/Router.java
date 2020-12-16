@@ -7,7 +7,7 @@ public class Router extends AbstractActor {
     private SupervisorStrategy supervisorStrategy;
 
     Router(ActorSystem actorSystem){
-        storageActor = actorSystem.actorOf(Props.create(S))
+        storageActor = actorSystem.actorOf(Props.create())
     }
 
 
