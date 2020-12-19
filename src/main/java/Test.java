@@ -2,16 +2,17 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Test implements Serializable {
     private final String testName;
     private final String expectedResult;
-    private final Object[] params;
+    private final List<Object> params;
     private String result;
     private Request parent;
 
     @JsonCreator
-    Test(@JsonProperty("testName")String testName, @JsonProperty("expectedResult")String expectedResult, @JsonProperty("params")Object[] params){
+    Test(@JsonProperty("testName")String testName, @JsonProperty("expectedResult")String expectedResult, @JsonProperty("params") List<Object> params){
         this.testName = testName;
         this.expectedResult = expectedResult;
         this.params = params;
@@ -25,7 +26,7 @@ public class Test implements Serializable {
         return expectedResult;
     }
 
-    public Object[] getParams() {
+    public Object getParams() {
         return params;
     }
 
