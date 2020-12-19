@@ -26,7 +26,7 @@ public class Test implements Serializable {
         return expectedResult;
     }
 
-    public Object getParams() {
+    public List<Object> getParams() {
         return params;
     }
 
