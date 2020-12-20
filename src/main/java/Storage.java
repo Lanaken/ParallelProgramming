@@ -1,6 +1,5 @@
 import akka.actor.AbstractActor;
 import akka.japi.pf.ReceiveBuilder;
-import com.sun.org.apache.xml.internal.security.utils.SignatureElementProxy;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,6 +10,25 @@ public class Storage extends AbstractActor {
 
     @Override
     public Receive createReceive() {
-        return ReceiveBuilder.create().match(SingleResult.class, this::g)
+        return ReceiveBuilder.create().match(SingleResult.class, this::getSingleResult)
+                .match(ResultRequest.class, this::sendPackageResult)
+                .build();
+    }
+
+    private void getSingleResult(SingleResult singleResult){
+        String packageID = singleResult.getPackageId();
+        String result = singleResult.getResult();
+        if (store.containsKey(packageID))
+            store.get(packageID).add(result);
+        else {
+            ArrayList<String> results = new ArrayList<>();
+            results.add(result);
+            store.put(packageID,results);
+        }
+    }
+
+    private void sendPackageResult(ResultRequest resultRequest){
+        String packageID = resultRequest.getPackageID();
+        sender().tell(new PackageResult(packageID,store.get(packageID)), getSelf());
     }
 }

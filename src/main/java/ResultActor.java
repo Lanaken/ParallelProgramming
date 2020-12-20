@@ -14,21 +14,31 @@ public class ResultActor extends AbstractActor {
         this.storage = storage;
     }
 
-    private String run(Test test) throws ScriptException, NoSuchMethodException {
+    private String run(String functionName, String script, Object... args) throws ScriptException, NoSuchMethodException {
         ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
-        engine.eval(test.getParent().getJsScript());
+        engine.eval(script);
         Invocable invocable = (Invocable) engine;
-        return invocable.invokeFunction(test.getParent().getFunctionName(),test.getParams()).toString();
+        return invocable.invokeFunction(functionName,args).toString();
     }
 
-    private Test check(Test test) throws ScriptException, NoSuchMethodException {
-        String res = run(test);
-        test.setResult(res);
-        return test;
+    private void runTest(Request test){
+        String body;
+        try {
+            String actualResult = run(test.getFunctionName(), test.getJsScript(),test.getParams());
+            body = actualResult.equals(test.getExpectedResult()) ? "Right answer" : "Wrong";
+        }
+        catch (ScriptException exception) {
+            body = "ScriptError :" + exception.getLocalizedMessage();
+        }
+        catch (NoSuchMethodException exception){
+            body = "No such Method :" + exception.getLocalizedMessage();
+        }
+        storage.tell(new SingleResult(test.getPackageId(),body), ActorRef.noSender());
     }
 
     @Override
     public Receive createReceive() {
-        return ReceiveBuilder.create().match(Test.class, func -> storage.tell(check(func), ActorRef.noSender())).build();
+        return ReceiveBuilder.create().match(Request.class, this::runTest)
+                .build();
     }
 }
