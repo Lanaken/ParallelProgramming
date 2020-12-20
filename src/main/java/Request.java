@@ -3,12 +3,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Request implements Serializable {
     private String packageId;
     private String jsScript;
     private String functionName;
-    private ArrayList<Test> tests;
+    private String expectedResult;
+    private List<Object> params;
 
     @JsonCreator
     Request(@JsonProperty("packageId")String packageId,@JsonProperty("jsScript")String jsScript,
