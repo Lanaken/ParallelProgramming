@@ -2,8 +2,8 @@ import akka.actor.*;
 import akka.routing.RoundRobinPool;
 
 public class Router extends AbstractActor {
-    private ActorRef storageActor;
-    private ActorRef testActor;
+    private final ActorRef storageActor;
+    private final ActorRef testActor;
 
     Router(){
         this.storageActor = getContext().actorOf(Props.create(Storage.class, Storage::new), "Storage");
