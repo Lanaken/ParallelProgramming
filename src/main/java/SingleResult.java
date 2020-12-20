@@ -1,8 +1,8 @@
-]public class SingleResult {
+public class SingleResult {
     private String packageId;
     private String result;
 
-    public SingleResult(String packageId, String result){
+    SingleResult(String packageId, String result){
         this.packageId = packageId;
         this.result = result;
     }
