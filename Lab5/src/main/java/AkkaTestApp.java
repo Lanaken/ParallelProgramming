@@ -1,2 +1,2 @@
-package PACKAGE_NAME;public class AkkaTestApp {
+public class AkkaTestApp {
 }
