@@ -36,7 +36,7 @@ public class AkkaTestApp {
                     String url = request.getUri().query().get("testUrl").orElse("http://bmstu.ru");
                     Integer count = Integer.parseInt(request.getUri().query().get("count").orElse("1"));
                     return new GetResult(url,count);
-                }).mapAsync(4, param ->
+                }).mapAsync(1, param ->
                     Patterns.ask(storeRef,param, Duration.ofMillis(5000))
                             .thenCompose(msg -> {
                                 System.out.println(msg.toString());
@@ -70,7 +70,7 @@ public class AkkaTestApp {
     static final Sink<GetResult,CompletionStage<Long>> testSink(){
         return Flow.<GetResult>create()
                 .mapConcat(msg -> Collections.nCopies(msg.getCount(),msg.getUrl()))
-                .mapAsync(4, pair -> {
+                .mapAsync(1, pair -> {
                     Long startTime = System.currentTimeMillis();
                     AsyncHttpClient asyncHttpClient = asyncHttpClient();
                     return asyncHttpClient
