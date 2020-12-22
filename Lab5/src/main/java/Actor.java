@@ -13,7 +13,7 @@ public class Actor extends AbstractActor {
             boolean isCounted = storage.containsKey(msg.getUrl());
             String url = msg.getUrl();
             System.out.println(isCounted);
-            if (isCounted){
+            if (!isCounted){
                 sender().tell(new ResponseResult(isCounted,url,storage.get(url)),getSelf());
             }
         }).match(StoreResult.class, msg -> {
