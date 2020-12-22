@@ -39,7 +39,6 @@ public class AkkaTestApp {
                 }).mapAsync(1, param ->
                     Patterns.ask(storeRef,param, Duration.ofMillis(5000))
                             .thenCompose(msg -> {
-                                System.out.println(msg.toString());
                                 ResponseResult responseResult = (ResponseResult) msg;
                                 if (responseResult.isEmpty())
                                     return CompletableFuture.completedFuture(responseResult);
