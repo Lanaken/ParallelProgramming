@@ -69,7 +69,7 @@ public class AkkaTestApp {
     }
 
     static final Sink<GetResult,CompletionStage<Long>> testSink(){
-        return Flow.<GetResult>create()
+        return Flow.<GetResult>create() 
                 .mapConcat(msg -> Collections.nCopies(msg.getCount(),msg.getUrl()))
                 .mapAsync(4, pair -> {
                     Long startTime = System.currentTimeMillis();
