@@ -17,11 +17,9 @@ import org.asynchttpclient.AsyncHttpClient;
 
 import java.io.IOException;
 import java.time.Duration;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
-import java.util.regex.Pattern;
 
 import static org.asynchttpclient.Dsl.asyncHttpClient;
 
@@ -37,6 +35,7 @@ public class AkkaTestApp {
                 .map(request -> {
                     String url = request.getUri().query().get("testUrl").orElse("http://bmstu.ru");
                     Integer count = Integer.parseInt(request.getUri().query().get("count").orElse("1"));
+                    System.out.println(url);
                     return new GetResult(url,count);
                 }).mapAsync(4, param ->
                     Patterns.ask(storeRef,param, Duration.ofMillis(5000))
