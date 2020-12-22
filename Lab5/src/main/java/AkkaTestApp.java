@@ -35,12 +35,11 @@ public class AkkaTestApp {
                 .map(request -> {
                     String url = request.getUri().query().get("testUrl").orElse("http://bmstu.ru");
                     Integer count = Integer.parseInt(request.getUri().query().get("count").orElse("1"));
-                    System.out.println(count);
                     return new GetResult(url,count);
                 }).mapAsync(4, param ->
                     Patterns.ask(storeRef,param, Duration.ofMillis(5000))
                             .thenCompose(msg -> {
-                                System.out.println(msg);
+                                System.out.println(msg.toString());
                                 ResponseResult responseResult = (ResponseResult) msg;
                                 if (responseResult.isEmpty())
                                     return CompletableFuture.completedFuture(responseResult);
